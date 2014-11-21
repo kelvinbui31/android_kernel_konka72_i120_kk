@@ -1,15 +1,15 @@
-<<<<<<< HEAD
+
 export PATH=${PATH}:~/linaro_toolchain/bin
 
 cd konka72_i120_kk
 
 Build Command:or Cach build kernel kitkat 3.4.67 for konka V850, symphony w68, intex cloud y2
 
-./makeMtk konka n k
+./makeMtk spark n k
 
 or 
 
-./mk konka n k
+./mk spark n k
 
 ---------------------------Make And Rebuild by Kelvin.Bui--------------------------------------------- 
 =======
