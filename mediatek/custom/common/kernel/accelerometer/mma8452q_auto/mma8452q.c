@@ -62,7 +62,7 @@ static const struct i2c_device_id mma8452q_i2c_id[] = {{MMA8452Q_DEV_NAME,0},{}}
 //static struct i2c_client_address_data mma8452q_addr_data = { .forces = mma8452q_forces,};
 static struct i2c_board_info __initdata i2c_MMA8452Q={ I2C_BOARD_INFO("MMA8452Q", 0x1C)};
 
-extern struct acc_hw* mma8452q_get_cust_acc_hw(void);
+extern struct acc_hw* get_cust_acc_hw(void);
 /*----------------------------------------------------------------------------*/
 static int mma8452q_i2c_probe(struct i2c_client *client, const struct i2c_device_id *id); 
 static int mma8452q_i2c_remove(struct i2c_client *client);
@@ -1979,7 +1979,7 @@ static int mma8452q_i2c_probe(struct i2c_client *client, const struct i2c_device
 	
 	memset(obj, 0, sizeof(struct mma8452q_i2c_data));
 
-	obj->hw = mma8452q_get_cust_acc_hw();
+	obj->hw = get_cust_acc_hw();
 	
 	if((err = hwmsen_get_convert(obj->hw->direction, &obj->cvt)))
 	{
@@ -2098,7 +2098,7 @@ static int mma8452q_i2c_remove(struct i2c_client *client)
 /*----------------------------------------------------------------------------*/
 static int  mma8452q_remove(void)
 {
-    struct acc_hw *hw =  mma8452q_get_cust_acc_hw();
+    struct acc_hw *hw =  get_cust_acc_hw();
 
     GSE_FUN();    
     MMA8452Q_power(hw, 0);    
@@ -2111,7 +2111,7 @@ static int  mma8452q_remove(void)
 
 static int mma8452q_local_init(void)
 {
-   struct acc_hw *hw = mma8452q_get_cust_acc_hw();
+   struct acc_hw *hw = get_cust_acc_hw();
 	GSE_FUN();
 
 	MMA8452Q_power(hw, 1);
@@ -2133,7 +2133,7 @@ static int mma8452q_local_init(void)
 static int __init mma8452q_init(void)
 {
 	GSE_FUN();
-	struct acc_hw *hw = mma8452q_get_cust_acc_hw();
+	struct acc_hw *hw = get_cust_acc_hw();
 	GSE_LOG("%s: i2c_number=%d\n", __func__,hw->i2c_num); 
 	i2c_register_board_info(hw->i2c_num, &i2c_MMA8452Q, 1);
 	hwmsen_gsensor_add(&mma8452q_init_info);
