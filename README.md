@@ -1,15 +1,17 @@
 
+DOWNLOAD SOURCE : $ git clone https://github.com/kelvinbui31/android_kernel_konka72_i120_kk.git
+
 export PATH=${PATH}:~/linaro_toolchain/bin
 
-cd konka72_i120_kk
+cd android_kernel_konka72_i120_kk
 
 Build Command:or Cach build kernel kitkat 3.4.67 for konka V850, symphony w68, intex cloud y2
 
-./makeMtk spark n k
+./makeMtk konka n k
 
 or 
 
-./mk spark n k
+./mk konka n k
 
 ---------------------------Make And Rebuild by Kelvin.Bui--------------------------------------------- 
 =======
