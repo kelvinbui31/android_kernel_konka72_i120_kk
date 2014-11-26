@@ -75,7 +75,7 @@ static int kxtik1004_resume(struct i2c_client *client);
 #endif
 
 
-extern struct acc_hw* kxtik1004_get_cust_acc_hw(void);
+extern struct acc_hw* get_cust_acc_hw(void);
 static int  kxtik1004_local_init(void);
 static int  kxtik1004_remove(void);
 static int kxtik1004_init_flag =-1; // 0<==>OK -1 <==> fail
@@ -1892,7 +1892,7 @@ static int kxtik1004_i2c_probe(struct i2c_client *client, const struct i2c_devic
 	
 	memset(obj, 0, sizeof(struct kxtik1004_i2c_data));
 
-	obj->hw = kxtik1004_get_cust_acc_hw();
+	obj->hw = get_cust_acc_hw();
 	
 	if((err = hwmsen_get_convert(obj->hw->direction, &obj->cvt)))
 	{
@@ -2009,7 +2009,7 @@ static int kxtik1004_i2c_remove(struct i2c_client *client)
 /*----------------------------------------------------------------------------*/
 static int  kxtik1004_remove(void)
 {
-    struct acc_hw *hw = kxtik1004_get_cust_acc_hw();
+    struct acc_hw *hw = get_cust_acc_hw();
 
     GSE_FUN();    
     KXTIK1004_power(hw, 0);    
@@ -2022,7 +2022,7 @@ static int  kxtik1004_remove(void)
 
 static int  kxtik1004_local_init(void)
 {
-   struct acc_hw *hw = kxtik1004_get_cust_acc_hw();
+   struct acc_hw *hw = get_cust_acc_hw();
 	GSE_FUN();
 
 	KXTIK1004_power(hw, 1);
@@ -2044,7 +2044,7 @@ static int  kxtik1004_local_init(void)
 static int __init kxtik1004_init(void)
 {
 	GSE_FUN();	
-	struct acc_hw *hw = kxtik1004_get_cust_acc_hw();
+	struct acc_hw *hw = get_cust_acc_hw();
 	GSE_LOG("%s: i2c_number=%d\n", __func__,hw->i2c_num);
 	i2c_register_board_info(hw->i2c_num, &i2c_kxtik1004, 1);
 	hwmsen_gsensor_add(&kxtik1004_init_info);
